@@ -46,6 +46,16 @@ public class GamesClient extends LabyrinthApiClient
 		return null;
 	}
 	
+	public String getLastGame()
+	{
+		HttpGet get = makeGetMethod("games/last");
+		if(sendRequest(get))
+		{
+			return parseResponse();
+		}
+		return null;
+	}
+
 	public String createGame()
 	{
 		HttpPost post = makePostMethod("games");
