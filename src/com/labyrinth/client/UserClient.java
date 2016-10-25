@@ -34,6 +34,7 @@ public class UserClient extends LabyrinthApiClient
 	{
 		HttpPost post = makePostMethod("user");
 		StringEntity data = null;
+		
 		try
 		{
 			data = new StringEntity(rawData);
@@ -42,11 +43,14 @@ public class UserClient extends LabyrinthApiClient
 		{
 			uee.printStackTrace();
 		}
+		
 		post.setEntity(data);
+		
 		if(sendRequest(post))
 		{
 			return parseResponse();
 		}
+		
 		return null;
 	}
 	
