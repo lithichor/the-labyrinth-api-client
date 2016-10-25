@@ -10,6 +10,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
@@ -96,6 +97,14 @@ public class LabyrinthApiClient
 		post.setHeader("authorization", "Basic " + encrypt64(username, password));
 
 		return post;
+	}
+
+	protected HttpPut makePutMethod(String endpoint)
+	{
+		HttpPut put = new HttpPut(baseUrl + "/api/" + endpoint);
+		put.setHeader("authorization", "Basic " + encrypt64(username, password));
+
+		return put;
 	}
 
 	protected HttpDelete makeDeleteMethod(String endpoint)
