@@ -9,6 +9,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpHead;
+import org.apache.http.client.methods.HttpOptions;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -42,6 +44,44 @@ public class LabyrinthApiClient
 		baseUrl = url;
 		this.username = username;
 		this.password = password;
+	}
+	
+	public String makeArbitraryAPICall(String endpoint, String method)
+	{
+		HttpRequestBase request = null;
+		
+		switch(method.toUpperCase())
+		{
+		case "GET":
+			request = new HttpGet(baseUrl + "/api/" + endpoint);
+			break;
+		case "POST":
+			request = new HttpPost(baseUrl + "/api/" + endpoint);
+			break;
+		case "PUT":
+			request = new HttpPut(baseUrl + "/api/" + endpoint);
+			break;
+		case "DELETE":
+			request = new HttpDelete(baseUrl + "/api/" + endpoint);
+			break;
+		case "OPTIONS":
+			request = new HttpOptions(baseUrl + "/api/" + endpoint);
+			break;
+		case "HEAD":
+			request = new HttpHead(baseUrl + "/api/" + endpoint);
+			break;
+		default:
+			System.out.println("The " + method + " method is not supported");
+			return null;
+		}
+		request.setHeader("authorization", "Basic " + encrypt64(username, password));
+		
+		if(sendRequest(request))
+		{
+			return parseResponse();
+		}
+		return null;
+		
 	}
 	
 	protected boolean sendRequest(HttpRequestBase req)
