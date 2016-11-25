@@ -1,20 +1,40 @@
 package com.labyrinth.client;
 
+import java.io.UnsupportedEncodingException;
+
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 
 public class MapsClient extends LabyrinthApiClient
 {
-
+	/**
+	 * A more general constructor for arbitrary server urls
+	 * 
+	 * @param url - the url for the server
+	 * @param username - email address for the authenticated user
+	 * @param password - password for the authenticated user
+	 */
 	public MapsClient(String url, String username, String password)
 	{
 		super(url, username, password);
 	}
 
+	/**
+	 * The constructor using localhost as the server url
+	 * 
+	 * @param username - email address for the authenticated user
+	 * @param password - password for the authenticated user
+	 */
 	public MapsClient(String username, String password)
 	{
 		super(username, password);
 	}
 
+	/**
+	 * This method gets the Maps for the most recent Game
+	 * @return the response from the server
+	 */
 	public String getCurrentGameMaps()
 	{
 		HttpGet get = makeGetMethod("maps");
@@ -25,6 +45,11 @@ public class MapsClient extends LabyrinthApiClient
 		return null;
 	}
 	
+	/**
+	 * This method gets the Maps for the Game specified by gameId
+	 * @param gameId
+	 * @return the response from the server
+	 */
 	public String getMapsForGame(String gameId)
 	{
 		HttpGet get = makeGetMethod("maps?gameId=" + gameId);
@@ -33,6 +58,52 @@ public class MapsClient extends LabyrinthApiClient
 		{
 			return parseResponse();
 		}
+		return null;
+	}
+	
+	/**
+	 * A convenience method so you don't need to change your Integer
+	 * to a String. Ain't that something?
+	 * @param gameId
+	 * @return
+	 */
+	public String getMapsForGame(Integer gameId)
+	{
+		HttpGet get = makeGetMethod("maps?gameId=" + gameId);
+		
+		if(sendRequest(get))
+		{
+			return parseResponse();
+		}
+		return null;
+	}
+	
+	/**
+	 * Create a new Map from a JSON-formatted string
+	 * @param rawData - JSON-formatted data
+	 * @return The response from the server
+	 */
+	public String makeNewMapForGame(String rawData)
+	{
+		HttpPost post = makePostMethod("maps");
+		StringEntity data = null;
+		
+		try
+		{
+			data = new StringEntity(rawData);
+		}
+		catch(UnsupportedEncodingException uee)
+		{
+			uee.printStackTrace();
+		}
+		
+		post.setEntity(data);
+		
+		if(sendRequest(post))
+		{
+			return parseResponse();
+		}
+		
 		return null;
 	}
 }

@@ -18,6 +18,7 @@ public class HerosClient extends LabyrinthApiClient
 	{
 		super(username, password);
 	}
+	
 	/**
 	 * A more general constructor for arbitrary server urls
 	 * 
