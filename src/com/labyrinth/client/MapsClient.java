@@ -1,6 +1,10 @@
 package com.labyrinth.client;
 
+import java.io.UnsupportedEncodingException;
+
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 
 public class MapsClient extends LabyrinthApiClient
 {
@@ -103,6 +107,35 @@ public class MapsClient extends LabyrinthApiClient
 		{
 			return parseResponse();
 		}
+		return null;
+	}
+
+	/**
+	 * Create a new Map from a JSON-formatted string
+	 * @param rawData - JSON-formatted data
+	 * @return The response from the server
+	 */
+	public String makeNewMapForGame(String rawData)
+	{
+		HttpPost post = makePostMethod("maps");
+		StringEntity data = null;
+		
+		try
+		{
+			data = new StringEntity(rawData);
+		}
+		catch(UnsupportedEncodingException uee)
+		{
+			uee.printStackTrace();
+		}
+		
+		post.setEntity(data);
+		
+		if(sendRequest(post))
+		{
+			return parseResponse();
+		}
+		
 		return null;
 	}
 }
