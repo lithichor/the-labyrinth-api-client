@@ -1,10 +1,6 @@
 package com.labyrinth.client;
 
-import java.io.UnsupportedEncodingException;
-
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 
 public class MapsClient extends LabyrinthApiClient
 {
@@ -46,13 +42,45 @@ public class MapsClient extends LabyrinthApiClient
 	}
 	
 	/**
+	 * This method gets the Map corresponding to the specified mapId
+	 * @param mapId
+	 * @return the response from the server
+	 */
+	public String getMapsFromMapId(Integer mapId)
+	{
+		HttpGet get = makeGetMethod("maps/" + mapId);
+		
+		if(sendRequest(get))
+		{
+			return parseResponse();
+		}
+		return null;
+	}
+	
+	/**
+	 * A convenience method for getMapsFromMapId(Integer mapId)
+	 * @param mapId
+	 * @return the response from the server
+	 */
+	public String getMapsFromMapId(String mapId)
+	{
+		HttpGet get = makeGetMethod("maps/" + mapId);
+		
+		if(sendRequest(get))
+		{
+			return parseResponse();
+		}
+		return null;
+	}
+	
+	/**
 	 * This method gets the Maps for the Game specified by gameId
 	 * @param gameId
 	 * @return the response from the server
 	 */
 	public String getMapsForGame(String gameId)
 	{
-		HttpGet get = makeGetMethod("maps?gameId=" + gameId);
+		HttpGet get = makeGetMethod("maps/games/" + gameId);
 		
 		if(sendRequest(get))
 		{
@@ -69,41 +97,12 @@ public class MapsClient extends LabyrinthApiClient
 	 */
 	public String getMapsForGame(Integer gameId)
 	{
-		HttpGet get = makeGetMethod("maps?gameId=" + gameId);
+		HttpGet get = makeGetMethod("maps/games/" + gameId);
 		
 		if(sendRequest(get))
 		{
 			return parseResponse();
 		}
-		return null;
-	}
-	
-	/**
-	 * Create a new Map from a JSON-formatted string
-	 * @param rawData - JSON-formatted data
-	 * @return The response from the server
-	 */
-	public String makeNewMapForGame(String rawData)
-	{
-		HttpPost post = makePostMethod("maps");
-		StringEntity data = null;
-		
-		try
-		{
-			data = new StringEntity(rawData);
-		}
-		catch(UnsupportedEncodingException uee)
-		{
-			uee.printStackTrace();
-		}
-		
-		post.setEntity(data);
-		
-		if(sendRequest(post))
-		{
-			return parseResponse();
-		}
-		
 		return null;
 	}
 }
