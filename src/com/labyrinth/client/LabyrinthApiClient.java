@@ -115,6 +115,15 @@ public class LabyrinthApiClient
 		}
 		return responseString;
 	}
+	
+	protected String getResponse(HttpRequestBase req)
+	{
+		if(sendRequest(req))
+		{
+			return parseResponse();
+		}
+		return null;
+	}
 
 	private String encrypt64(String username, String password)
 	{
