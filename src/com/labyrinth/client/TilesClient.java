@@ -46,4 +46,24 @@ public class TilesClient extends LabyrinthApiClient
 		return getResponse(makeGetMethod("tiles/" + id));
 	}
 	
+	/**
+	 * Get all Tiles for a given Map ID
+	 * @param mapId
+	 * @return the response from the server
+	 */
+	public String getTilesForMap(String mapId)
+	{
+		return getResponse(makeGetMethod("tiles/map/" + mapId));
+	}
+	
+	/**
+	 * Get all Tiles for a given Map ID
+	 * @param mapId
+	 * @return the response from the server
+	 */
+	public String getTilesForMap(Integer mapId)
+	{
+		return getResponse(makeGetMethod("tiles/map/" + mapId));
+	}
+	
 }
