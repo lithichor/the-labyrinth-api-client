@@ -4,3 +4,4 @@
 bin/
 .DS_Store
 src/tester/TestClient.java
+LabyrinthAPIClient_OLD.jar
