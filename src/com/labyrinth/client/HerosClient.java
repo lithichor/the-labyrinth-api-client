@@ -47,9 +47,25 @@ public class HerosClient extends LabyrinthApiClient
 		return null;
 	}
 	
-	public String updateCurrentHero(String rawData)
+	/**
+	 * Get the hero with the heroId
+	 * @param heroId
+	 * @return
+	 */
+	public String getHero(Integer heroId)
 	{
-		HttpPut put = makePutMethod("heros");
+		return getResponse(makeGetMethod("heros/" + heroId));
+	}
+	
+	/**
+	 * Update the hero with the heroId
+	 * @param heroId
+	 * @param rawData
+	 * @return
+	 */
+	public String updateCurrentHero(Integer heroId, String rawData)
+	{
+		HttpPut put = makePutMethod("heros/" + heroId);
 		StringEntity data = null;
 		
 		try
