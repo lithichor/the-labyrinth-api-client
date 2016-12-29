@@ -2,7 +2,6 @@ package com.labyrinth.client;
 
 import java.io.UnsupportedEncodingException;
 
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 
@@ -32,19 +31,13 @@ public class HerosClient extends LabyrinthApiClient
 	}
 	
 	/**
-	 * Returns the most recent Hero. This is the Hero associated with
-	 * the most recent Game for the authenticated user.
+	 * Returns all heros for the user.
 	 * @param heroId
 	 * @return the response from the GET method in String form
 	 */
-	public String getCurrentHero()
+	public String getHeros()
 	{
-		HttpGet get = makeGetMethod("heros");
-		if(sendRequest(get))
-		{
-			return parseResponse();
-		}
-		return null;
+		return getResponse(makeGetMethod("heros"));
 	}
 	
 	/**
