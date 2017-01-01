@@ -1,11 +1,5 @@
 package com.labyrinth.client;
 
-import java.io.UnsupportedEncodingException;
-
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-
 public class MapsClient extends LabyrinthApiClient
 {
 	/**
@@ -37,12 +31,7 @@ public class MapsClient extends LabyrinthApiClient
 	 */
 	public String getCurrentGameMaps()
 	{
-		HttpGet get = makeGetMethod("maps");
-		if(sendRequest(get))
-		{
-			return parseResponse();
-		}
-		return null;
+		return getResponse(makeGetMethod("maps"));
 	}
 	
 	/**
@@ -52,13 +41,7 @@ public class MapsClient extends LabyrinthApiClient
 	 */
 	public String getMapsFromMapId(Integer mapId)
 	{
-		HttpGet get = makeGetMethod("maps/" + mapId);
-		
-		if(sendRequest(get))
-		{
-			return parseResponse();
-		}
-		return null;
+		return getResponse(makeGetMethod("maps/" + mapId));
 	}
 	
 	/**
@@ -68,13 +51,7 @@ public class MapsClient extends LabyrinthApiClient
 	 */
 	public String getMapsFromMapId(String mapId)
 	{
-		HttpGet get = makeGetMethod("maps/" + mapId);
-		
-		if(sendRequest(get))
-		{
-			return parseResponse();
-		}
-		return null;
+		return getResponse(makeGetMethod("maps/" + mapId));
 	}
 	
 	/**
@@ -84,13 +61,7 @@ public class MapsClient extends LabyrinthApiClient
 	 */
 	public String getMapsForGame(String gameId)
 	{
-		HttpGet get = makeGetMethod("maps/games/" + gameId);
-		
-		if(sendRequest(get))
-		{
-			return parseResponse();
-		}
-		return null;
+		return getResponse(makeGetMethod("maps/games/" + gameId));
 	}
 	
 	/**
@@ -101,13 +72,7 @@ public class MapsClient extends LabyrinthApiClient
 	 */
 	public String getMapsForGame(Integer gameId)
 	{
-		HttpGet get = makeGetMethod("maps/games/" + gameId);
-		
-		if(sendRequest(get))
-		{
-			return parseResponse();
-		}
-		return null;
+		return getResponse(makeGetMethod("maps/games/" + gameId));
 	}
 
 	/**
@@ -117,25 +82,6 @@ public class MapsClient extends LabyrinthApiClient
 	 */
 	public String makeNewMapForGame(String rawData)
 	{
-		HttpPost post = makePostMethod("maps");
-		StringEntity data = null;
-		
-		try
-		{
-			data = new StringEntity(rawData);
-		}
-		catch(UnsupportedEncodingException uee)
-		{
-			uee.printStackTrace();
-		}
-		
-		post.setEntity(data);
-		
-		if(sendRequest(post))
-		{
-			return parseResponse();
-		}
-		
-		return null;
+		return getResponse(makePostMethod("maps"), rawData);
 	}
 }

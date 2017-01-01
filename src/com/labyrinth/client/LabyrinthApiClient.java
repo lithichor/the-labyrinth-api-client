@@ -1,6 +1,7 @@
 package com.labyrinth.client;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.StringUtils;
@@ -14,6 +15,7 @@ import org.apache.http.client.methods.HttpOptions;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
@@ -119,6 +121,28 @@ public class LabyrinthApiClient
 	protected String getResponse(HttpRequestBase req)
 	{
 		if(sendRequest(req))
+		{
+			return parseResponse();
+		}
+		return null;
+	}
+
+	protected String getResponse(HttpPost post, String rawData)
+	{
+		StringEntity data = null;
+		
+		try
+		{
+			data = new StringEntity(rawData);
+		}
+		catch(UnsupportedEncodingException uee)
+		{
+			uee.printStackTrace();
+		}
+
+		(post).setEntity(data);
+		
+		if(sendRequest(post))
 		{
 			return parseResponse();
 		}
