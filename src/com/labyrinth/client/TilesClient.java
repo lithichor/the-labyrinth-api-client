@@ -31,7 +31,7 @@ public class TilesClient extends LabyrinthApiClient
 	 * @param id
 	 * @return the response from the server
 	 */
-	public String getTiles(String id)
+	public String getTile(String id)
 	{
 		return getResponse(makeGetMethod("tiles/" + id));
 	}
@@ -41,7 +41,7 @@ public class TilesClient extends LabyrinthApiClient
 	 * @param id
 	 * @return the response from the server
 	 */
-	public String getTiles(Integer id)
+	public String getTile(Integer id)
 	{
 		return getResponse(makeGetMethod("tiles/" + id));
 	}
