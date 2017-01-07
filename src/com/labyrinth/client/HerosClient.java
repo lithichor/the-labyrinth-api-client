@@ -41,11 +41,21 @@ public class HerosClient extends LabyrinthApiClient
 	}
 	
 	/**
-	 * Get the hero with the heroId
+	 * Get the hero with the Integer heroId
 	 * @param heroId
 	 * @return
 	 */
 	public String getHero(Integer heroId)
+	{
+		return getResponse(makeGetMethod("heros/" + heroId));
+	}
+	
+	/**
+	 * Get the hero with the String heroId
+	 * @param heroId
+	 * @return
+	 */
+	public String getHero(String heroId)
 	{
 		return getResponse(makeGetMethod("heros/" + heroId));
 	}
