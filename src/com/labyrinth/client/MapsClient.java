@@ -84,4 +84,24 @@ public class MapsClient extends LabyrinthApiClient
 	{
 		return getResponse(makePostMethod("maps"), rawData);
 	}
+	
+	/**
+	 * Delete a Map using a String mapId
+	 * @param mapId
+	 * @return
+	 */
+	public String deleteMap(String mapId)
+	{
+		return getResponse(makeDeleteMethod("maps/" + mapId));
+	}
+
+	/**
+	 * Delete a Map using an Integer mapId
+	 * @param mapId
+	 * @return
+	 */
+	public String deleteMap(Integer mapId)
+	{
+		return getResponse(makeDeleteMethod("maps/" + mapId));
+	}
 }
