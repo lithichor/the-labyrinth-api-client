@@ -60,13 +60,19 @@ public class HerosClient extends LabyrinthApiClient
 		return getResponse(makeGetMethod("heros/" + heroId));
 	}
 	
+	@Deprecated
+	public String updateCurrentHero(Integer heroId, String rawData)
+	{
+		return updateHero(heroId, rawData);
+	}
+	
 	/**
 	 * Update the hero with the heroId
 	 * @param heroId
 	 * @param rawData
 	 * @return
 	 */
-	public String updateCurrentHero(Integer heroId, String rawData)
+	public String updateHero(Integer heroId, String rawData)
 	{
 		HttpPut put = makePutMethod("heros/" + heroId);
 		StringEntity data = null;
