@@ -1,13 +1,5 @@
 package com.labyrinth.client;
 
-import java.io.UnsupportedEncodingException;
-
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.entity.StringEntity;
-
 public class UserClient extends LabyrinthApiClient
 {
 	/**
@@ -39,12 +31,7 @@ public class UserClient extends LabyrinthApiClient
 	 */
 	public String getUser()
 	{
-		HttpGet get = makeGetMethod("user");
-		if(sendRequest(get))
-		{
-			return parseResponse();
-		}
-		return null;
+		return getResponse(makeGetMethod("user"));
 	}
 	
 	/**
@@ -54,26 +41,7 @@ public class UserClient extends LabyrinthApiClient
 	 */
 	public String createUser(String rawData)
 	{
-		HttpPost post = makePostMethod("user");
-		StringEntity data = null;
-		
-		try
-		{
-			data = new StringEntity(rawData);
-		}
-		catch(UnsupportedEncodingException uee)
-		{
-			uee.printStackTrace();
-		}
-		
-		post.setEntity(data);
-		
-		if(sendRequest(post))
-		{
-			return parseResponse();
-		}
-		
-		return null;
+		return getResponse(makePostMethod("user"), rawData);
 	}
 	
 	/**
@@ -83,26 +51,7 @@ public class UserClient extends LabyrinthApiClient
 	 */
 	public String updateUser(String rawData)
 	{
-		HttpPut put = makePutMethod("user");
-		StringEntity data = null;
-		
-		try
-		{
-			data = new StringEntity(rawData);
-		}
-		catch(UnsupportedEncodingException uee)
-		{
-			uee.printStackTrace();
-		}
-		
-		put.setEntity(data);
-		
-		if(sendRequest(put))
-		{
-			return parseResponse();
-		}
-		
-		return null;
+		return getResponse(makePutMethod("user"), rawData);
 	}
 	
 	/**
@@ -111,11 +60,6 @@ public class UserClient extends LabyrinthApiClient
 	 */
 	public String deleteUser()
 	{
-		HttpDelete delete = makeDeleteMethod("user");
-		if(sendRequest(delete))
-		{
-			return parseResponse();
-		}
-		return null;
+		return getResponse(makeDeleteMethod("user"));
 	}
 }

@@ -9,6 +9,7 @@ import org.apache.http.ParseException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpHead;
 import org.apache.http.client.methods.HttpOptions;
@@ -127,7 +128,7 @@ public class LabyrinthApiClient
 		return null;
 	}
 
-	protected String getResponse(HttpPost post, String rawData)
+	protected String getResponse(HttpEntityEnclosingRequestBase post, String rawData)
 	{
 		StringEntity data = null;
 		
