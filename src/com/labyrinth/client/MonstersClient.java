@@ -45,4 +45,23 @@ public class MonstersClient extends LabyrinthApiClient
 		return getResponse(makeGetMethod("monsters/" + monsterId));
 	}
 
+	/**
+	 * Get a Monster using the Tile ID (Integer)
+	 * @param tileId
+	 * @return
+	 */
+	public String getMonsterForTile(Integer tileId)
+	{
+		return getResponse(makeGetMethod("monsters/tile/" + tileId));
+	}
+
+	/**
+	 * Get a Monster using the Tile ID (String)
+	 * @param tileId
+	 * @return
+	 */
+	public String getMonsterForTile(String tileId)
+	{
+		return getResponse(makeGetMethod("monsters/tile/" + tileId));
+	}
 }
