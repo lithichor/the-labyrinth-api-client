@@ -39,11 +39,11 @@ public class GamesClient extends LabyrinthApiClient
 
 	public String deleteGame(Integer id)
 	{
-		return getResponse(makeDeleteMethod("games"));
+		return getResponse(makeDeleteMethod("games/" + id));
 	}
 
 	public String deleteGame(String id)
 	{
-		return getResponse(makeDeleteMethod("games"));
+		return getResponse(makeDeleteMethod("games/" + id));
 	}
 }
