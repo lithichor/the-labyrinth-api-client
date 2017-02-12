@@ -71,4 +71,13 @@ public class HerosClient extends LabyrinthApiClient
 	{
 		return getResponse(makePutMethod("heros/" + heroId), rawData);
 	}
+	
+	/**
+	 * Get the options for the heros endpoint
+	 * @return
+	 */
+	public String getHeroOptions()
+	{
+		return getResponse(makeOptionsMethod("heros"));
+	}
 }
