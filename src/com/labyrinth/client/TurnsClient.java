@@ -62,4 +62,15 @@ public class TurnsClient extends LabyrinthApiClient
 	{
 		return getResponse(makeGetMethod("turns/game/" + gameId));
 	}
+	
+	/**
+	 * Make a move in the Map by updating the turn
+	 * @param turnId
+	 * @param rawData - provides a direction to move the Hero
+	 * @return
+	 */
+	public String updateTurn(Integer turnId, String rawData)
+	{
+		return getResponse(makePutMethod("turns/" + turnId), rawData);
+	}
 }
