@@ -188,4 +188,12 @@ public class LabyrinthApiClient
 		
 		return delete;
 	}
+
+	protected HttpOptions makeOptionsMethod(String endpoint)
+	{
+		HttpOptions options = new HttpOptions(baseUrl + "/api/" + endpoint);
+		options.setHeader("authorization", "Basic " + encrypt64(username, password));
+		
+		return options;
+	}
 }

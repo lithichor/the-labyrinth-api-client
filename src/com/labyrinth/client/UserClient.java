@@ -62,4 +62,13 @@ public class UserClient extends LabyrinthApiClient
 	{
 		return getResponse(makeDeleteMethod("user"));
 	}
+	
+	/**
+	 * Get the Options for the User
+	 * @return The response form the server
+	 */
+	public String getOptions()
+	{
+		return getResponse(makeOptionsMethod("user"));
+	}
 }
