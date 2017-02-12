@@ -104,4 +104,13 @@ public class MapsClient extends LabyrinthApiClient
 	{
 		return getResponse(makeDeleteMethod("maps/" + mapId));
 	}
+	
+	/**
+	 * Get the options for the map endpoint
+	 * @return
+	 */
+	public String getMapOptions()
+	{
+		return getResponse(makeOptionsMethod("maps"));
+	}
 }
