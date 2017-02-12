@@ -1,10 +1,5 @@
 package com.labyrinth.client;
 
-import java.io.UnsupportedEncodingException;
-
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.entity.StringEntity;
-
 public class HerosClient extends LabyrinthApiClient
 {
 	/**
@@ -74,24 +69,6 @@ public class HerosClient extends LabyrinthApiClient
 	 */
 	public String updateHero(Integer heroId, String rawData)
 	{
-		HttpPut put = makePutMethod("heros/" + heroId);
-		StringEntity data = null;
-		
-		try
-		{
-			data = new StringEntity(rawData);
-		}
-		catch(UnsupportedEncodingException uee)
-		{
-			uee.printStackTrace();
-		}
-		
-		put.setEntity(data);
-		
-		if(sendRequest(put))
-		{
-			return parseResponse();
-		}
-		return null;
+		return getResponse(makePutMethod("heros/" + heroId), rawData);
 	}
 }
