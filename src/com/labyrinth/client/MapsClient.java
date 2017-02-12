@@ -61,7 +61,7 @@ public class MapsClient extends LabyrinthApiClient
 	 */
 	public String getMapsForGame(String gameId)
 	{
-		return getResponse(makeGetMethod("maps/games/" + gameId));
+		return getResponse(makeGetMethod("maps/game/" + gameId));
 	}
 	
 	/**
@@ -72,7 +72,7 @@ public class MapsClient extends LabyrinthApiClient
 	 */
 	public String getMapsForGame(Integer gameId)
 	{
-		return getResponse(makeGetMethod("maps/games/" + gameId));
+		return getResponse(makeGetMethod("maps/game/" + gameId));
 	}
 
 	/**
