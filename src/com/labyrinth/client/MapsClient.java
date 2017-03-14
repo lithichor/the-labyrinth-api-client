@@ -114,6 +114,10 @@ public class MapsClient extends LabyrinthApiClient
 		return getResponse(makeOptionsMethod("maps"));
 	}
 	
+	/**
+	 * Get the options for the maps/game endpoint
+	 * @return
+	 */
 	public String getMapsGameOptions()
 	{
 		return getResponse(makeOptionsMethod("maps/game"));

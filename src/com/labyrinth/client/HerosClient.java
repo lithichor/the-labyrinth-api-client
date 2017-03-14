@@ -80,4 +80,13 @@ public class HerosClient extends LabyrinthApiClient
 	{
 		return getResponse(makeOptionsMethod("heros"));
 	}
+	
+	/**
+	 * Get the options for the heros/game endpoint
+	 * @return
+	 */
+	public String getHerosGameOptions()
+	{
+		return getResponse(makeOptionsMethod("heros/game"));
+	}
 }
